@@ -21,3 +21,5 @@ const Input = (props) => {
         {inputElement}
     </div>)
 }
+
+export default Input
