@@ -4,30 +4,30 @@ import axios from '../../axios-orders'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 
 class Orders extends Component {
-    state= {
-        orders:[],
-        loading:true
+    state = {
+        orders: [],
+        loading: true
     }
-    
-    componentDidMount(){
+
+    componentDidMount() {
         axios.get('/orders.json')
-        .then(res => {
-            let fetchedOrders = [];
-            for(let key in res.data) {
-                fetchedOrders.push({
-                    ...res.data[key],
-                    id:key
-            });
-            }
-            this.setState({loading:false, orders:fetchedOrders})
-        })
-        .catch(err => {
-            this.setState({loading:false})
-        })
+            .then(res => {
+                let fetchedOrders = [];
+                for (let key in res.data) {
+                    fetchedOrders.push({
+                        ...res.data[key],
+                        id: key
+                    });
+                }
+                this.setState({ loading: false, orders: fetchedOrders })
+            })
+            .catch(err => {
+                this.setState({ loading: false })
+            })
     }
-    
+
     render() {
-        return(
+        return (
             <div>
                 {this.state.orders.map(order => (
                     <Order key={order.id}
